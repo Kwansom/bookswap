@@ -4,7 +4,6 @@ const { gql } = require("apollo-server-express");
 const typeDefs = gql`
   # Query type
   type Query {
-  
   # Get the authenticated user's data
     me: User
   }
@@ -24,7 +23,7 @@ const typeDefs = gql`
     removeBook(bookId: String!): User
 
     # Update a book from a user's savedBooks: accepts bookID, returns updated book status
-    updateBook(bookId :String! , status):User
+    updateBook(bookId :String!, status: String!): User
   }
 
   # User type: defines the user data fields
