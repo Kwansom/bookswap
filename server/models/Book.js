@@ -29,7 +29,6 @@ const bookSchema = new Schema({
   status: {
     type: String,
   },
-  username: [userSchema],
     
 });
 
