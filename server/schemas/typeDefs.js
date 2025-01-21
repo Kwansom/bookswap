@@ -1,10 +1,11 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 // Define the GraphQL schema with necessary Query and Mutation types
 const typeDefs = gql`
   # Query type
   type Query {
-    # Get the authenticated user's data
+  
+  # Get the authenticated user's data
     me: User
   }
 
@@ -33,6 +34,10 @@ const typeDefs = gql`
     email: String
     bookCount: Int
     savedBooks: [Book]
+    street: String
+    city: String
+    state: String
+    zip: String
   }
 
   # Book type: defines the book data fields
@@ -43,6 +48,7 @@ const typeDefs = gql`
     title: String
     image: String
     link: String
+
   }
 
   # Auth type: returned after login or user creation
