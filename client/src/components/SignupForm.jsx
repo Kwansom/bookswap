@@ -155,7 +155,7 @@ const SignupForm = () => {
           <Form.Control.Feedback type='invalid'>State is required!</Form.Control.Feedback>
         </Form.Group>
         <Form.Group className='mb-3'>
-          <Form.Label htmlFor='zipCode'>ZIP <Code></Code></Form.Label>
+          <Form.Label htmlFor='zipCode'>ZIP</Form.Label>
           <Form.Control
             type='zipCode'
             placeholder='Your ZIP Code'
@@ -164,7 +164,7 @@ const SignupForm = () => {
             value={userFormData.zipCode}
             required
           />
-          <Form.Control.Feedback type='invalid'>ZIP <Code></Code> is required!</Form.Control.Feedback>
+          <Form.Control.Feedback type='invalid'>ZIP Code is required!</Form.Control.Feedback>
         </Form.Group>
         <Button
           disabled={!(userFormData.username && userFormData.email && userFormData.password && userFormData.street && userFormData.city && userFormData.state && userFormData.zipCode)}
