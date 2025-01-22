@@ -86,11 +86,12 @@ const SearchBooks = () => {
 
   return (
     <>
+      {/* Search Form */}
       <div className="text-light bg-dark p-5">
-        <Container>
-          <h1>Search for Books!</h1>
-          <Form onSubmit={handleFormSubmit}>
-            <Row>
+        <Container className="d-flex justify-content-center align-items-center flex-column">
+          <h1 className="mb-4">Search for Books!</h1>
+          <Form onSubmit={handleFormSubmit} className="w-100">
+            <Row className="g-3">
               <Col xs={12} md={8}>
                 <Form.Control
                   name="searchInput"
@@ -102,7 +103,7 @@ const SearchBooks = () => {
                 />
               </Col>
               <Col xs={12} md={4}>
-                <Button type="submit" variant="success" size="lg">
+                <Button type="submit" variant="success" size="lg" block>
                   Submit Search
                 </Button>
               </Col>
@@ -111,24 +112,25 @@ const SearchBooks = () => {
         </Container>
       </div>
 
-      <Container>
-        <h2 className="pt-5">
+      {/* Search Results */}
+      <Container className="pt-5">
+        <h2>
           {searchedBooks.length
             ? `Viewing ${searchedBooks.length} results:`
             : "Search for a book to begin"}
         </h2>
         <Row>
-          {searchedBooks.map((book) => {
-            return (
-              <Col md="4" key={book.bookId}>
+          {searchedBooks.length ? (
+            searchedBooks.map((book) => (
+              <Col md={4} key={book.bookId} className="mb-4">
                 <Card border="dark">
-                  {book.image ? (
+                  {book.image && (
                     <Card.Img
                       src={book.image}
                       alt={`The cover for ${book.title}`}
                       variant="top"
                     />
-                  ) : null}
+                  )}
                   <Card.Body>
                     <Card.Title>{book.title}</Card.Title>
                     <p className="small">Authors: {book.authors}</p>
@@ -151,8 +153,10 @@ const SearchBooks = () => {
                   </Card.Body>
                 </Card>
               </Col>
-            );
-          })}
+            ))
+          ) : (
+            <p>No results found. Try searching for a book!</p>
+          )}
         </Row>
       </Container>
     </>
