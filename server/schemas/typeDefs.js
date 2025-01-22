@@ -1,7 +1,7 @@
-const { gql } = require("apollo-server-express");
+// const { gql } = require("apollo-server-express");
 
 // Define the GraphQL schema with necessary Query and Mutation types
-const typeDefs = gql`
+const typeDefs = `
   # Query type
   type Query {
   # Get the authenticated user's data
