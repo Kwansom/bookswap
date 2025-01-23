@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Navbar, Nav, Container, Modal, Tab } from "react-bootstrap";
 import SignUpForm from "./SignupForm";
 import LoginForm from "./LoginForm";
+import "../../assets/NavBar.css";
 
 import Auth from "../utils/auth";
 
@@ -12,33 +13,44 @@ const AppNavbar = () => {
 
   return (
     <>
-      <Navbar bg="dark" variant="dark" expand="lg">
+      <Navbar
+        bg="dark"
+        variant="dark"
+        expand="lg"
+        className="rounded-pill py-2"
+      >
         <Container fluid>
-          <Navbar.Brand as={Link} to="/">
+          <Navbar.Brand as={Link} to="/" className="text-center">
             {/* BookSwap */}
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbar" />
-          <Navbar.Collapse id="navbar" className="d-flex flex-row-reverse">
-            <Nav className="ml-auto d-flex">
-              <Nav.Link as={Link} to="/">
+          <Navbar.Collapse
+            id="navbar"
+            className="d-flex justify-content-center"
+          >
+            <Nav className="d-flex">
+              <Nav.Link as={Link} to="/" className="nav-item-pill">
                 Search Books
               </Nav.Link>
               {/* if user is logged in show saved books and logout */}
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to="/saved">
+                  <Nav.Link as={Link} to="/saved" className="nav-item-pill">
                     See Your Books
                   </Nav.Link>
-                  <Nav.Link as={Link} to="/swap">
+                  <Nav.Link as={Link} to="/swap" className="nav-item-pill">
                     Swap Books
                   </Nav.Link>
-                  <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
+                  <Nav.Link onClick={Auth.logout} className="nav-item-pill">
+                    Logout
+                  </Nav.Link>
                 </>
               ) : (
                 <Nav.Link
                   onClick={() => {
                     setShowModal(true);
                   }}
+                  className="nav-item-pill"
                 >
                   Login/Sign Up
                 </Nav.Link>

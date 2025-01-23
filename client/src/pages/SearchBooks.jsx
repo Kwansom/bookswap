@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Container, Col, Form, Button, Card, Row } from "react-bootstrap";
+import "../../assets/SearchBook.css";
 
 import Auth from "../utils/auth";
 import { searchGoogleBooks } from "../utils/API";
@@ -87,11 +88,14 @@ const SearchBooks = () => {
   return (
     <>
       {/* Search Form */}
-      <div className="text-light bg-dark p-5">
+      <div className="searchform-container text-light p-5">
         <Container className="d-flex justify-content-center align-items-center flex-column">
-          <h1 className="mb-4">Search for Books!</h1>
-          <Form onSubmit={handleFormSubmit} className="w-100">
-            <Row className="g-3">
+          <h1 className="searchbooks mb-4 text-center" >Search for Books!</h1>
+          <Form
+            onSubmit={handleFormSubmit}
+            className="w-100 d-flex flex-column align-items-center"
+          >
+            <Row className="g-3 w-100 d-flex justify-content-center">
               <Col xs={12} md={8}>
                 <Form.Control
                   name="searchInput"
@@ -99,12 +103,13 @@ const SearchBooks = () => {
                   onChange={(e) => setSearchInput(e.target.value)}
                   type="text"
                   size="lg"
-                  placeholder="Search for a book"
+                  placeholder="Do you read?"
+                  className="mb-3" // Add margin-bottom for spacing
                 />
               </Col>
               <Col xs={12} md={4}>
-                <Button type="submit" variant="success" size="lg" block>
-                  Submit Search
+                <Button className="submit-button" type="submit" variant="success" size="lg" block>
+                  Let's Read!
                 </Button>
               </Col>
             </Row>
