@@ -90,7 +90,7 @@ const SearchBooks = () => {
       {/* Search Form */}
       <div className="searchform-container text-light p-5">
         <Container className="d-flex justify-content-center align-items-center flex-column">
-          <h1 className="searchbooks mb-4 text-center" >Search for Books!</h1>
+          <h1 className="searchbooks mb-4 text-center">Do you even read?</h1>
           <Form
             onSubmit={handleFormSubmit}
             className="w-100 d-flex flex-column align-items-center"
@@ -103,12 +103,18 @@ const SearchBooks = () => {
                   onChange={(e) => setSearchInput(e.target.value)}
                   type="text"
                   size="lg"
-                  placeholder="Do you read?"
+                  placeholder="Search"
                   className="mb-3" // Add margin-bottom for spacing
                 />
               </Col>
               <Col xs={12} md={4}>
-                <Button className="submit-button" type="submit" variant="success" size="lg" block>
+                <Button
+                  className="submit-button"
+                  type="submit"
+                  variant="success"
+                  size="lg"
+                  block
+                >
                   Let's Read!
                 </Button>
               </Col>
