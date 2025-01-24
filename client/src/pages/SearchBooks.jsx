@@ -113,7 +113,6 @@ const SearchBooks = () => {
                   type="submit"
                   variant="success"
                   size="lg"
-                  block
                 >
                   Let's Read!
                 </Button>
