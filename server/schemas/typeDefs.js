@@ -4,7 +4,7 @@ const { gql } = require("apollo-server-express");
 const typeDefs = gql`
   # Query type
   type Query {
-  # Get the authenticated user's data
+    # Get the authenticated user's data
     me: User
   }
 
@@ -14,7 +14,15 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
 
     # Add a new user: accepts username, email, password, returns Auth type
-    addUser(username: String!, email: String!, password: String!): Auth
+    addUser(
+      username: String!
+      email: String!
+      street: String!
+      city: String!
+      state: String!
+      zipCode: String!
+      password: String!
+    ): Auth
 
     # Save a book to a user's savedBooks: accepts book details, returns the updated User type
     saveBook(bookInput: BookInput!): User
@@ -23,7 +31,7 @@ const typeDefs = gql`
     removeBook(bookId: String!): User
 
     # Update a book from a user's savedBooks: accepts bookID, returns updated book status
-    updateBook(bookId :String!, status: String!): User
+    updateBook(bookId: String!, status: String!): User
   }
 
   # User type: defines the user data fields
@@ -36,7 +44,7 @@ const typeDefs = gql`
     street: String
     city: String
     state: String
-    zip: String
+    zipCode: String
   }
 
   # Book type: defines the book data fields
@@ -47,7 +55,6 @@ const typeDefs = gql`
     title: String
     image: String
     link: String
-
   }
 
   # Auth type: returned after login or user creation
