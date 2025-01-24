@@ -1,21 +1,39 @@
 .searchform-container {
-    background-color: whitesmoke;
+  background-color: whitesmoke;
 }
 
 .searchbooks {
-    font-style: italic;
-    color: black;
+  font-style: italic;
+  color: black;
 }
 
 .submit-button {
-    background-color: red;
-    border-color: green;
-    border-radius: 50px; /* Make the button pill-shaped */
-    transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth transition */
-  }
-  
-  .submit-button:hover {
-    transform: scale(1.1); /* Grow the button slightly on hover */
-    background-color: green;
-    border-color: #5a2d98; /* Match the border color on hover */
-  }
+  background-color: red;
+  border-color: green;
+  border-radius: 50px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  transform: scale(1.1);
+  background-color: green;
+  border-color: #5a2d98;
+  box-shadow: 5px 5px 10px rgba(0, 0, 255, 0.4);
+}
+
+.card {
+  border-radius: 15px;
+  transition: box-shadow 0.3s ease;
+  position: relative;
+}
+
+.card:hover {
+  transform: scale(1);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  box-shadow: 5px 5px 10px rgba(0, 0, 255, 0.4);
+}
+
+.card-img-top {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
