@@ -1,6 +1,7 @@
 .nav-item-pill:hover {
   background-color: red;
   color: white;
+  outline: 2px white solid;
   transform: scale(1.05);
   cursor: pointer;
   border-radius: 20px;
@@ -17,4 +18,13 @@
   align-items: center;
 }
 
+.nav-pills .nav-link:hover {
+  background-color: red;
+  color: white;
+}
 
+.nav-pills .nav-link.active {
+  background-color: red;
+  outline: black 2px solid;
+  box-shadow: 0 6px 12px whitesmoke (0, 0, 0, 0.2);
+}
