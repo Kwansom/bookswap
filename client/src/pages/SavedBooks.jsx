@@ -66,6 +66,7 @@ console.log(bookId)
           {userData.savedBooks.map((book) => {
             return (
               <Col md="4" key={book.bookId}> {/* Use _id as key */}
+
                 <Card border='dark'>
                   {book.image ? <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
                   <Card.Body>
@@ -73,6 +74,7 @@ console.log(bookId)
                     <p className='small'>Authors: {book.authors}</p>
                     <Card.Text>{book.description}</Card.Text>
                     <Button className='btn-block btn-danger' onClick={() => handleDeleteBook(book.bookId)}> {/* Use _id here */}
+
                       Delete this Book!
                     </Button>
                   </Card.Body>
