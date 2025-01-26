@@ -65,22 +65,55 @@ const AppNavbar = () => {
         show={showModal}
         onHide={() => setShowModal(false)}
         aria-labelledby="signup-modal"
+        style={{ borderRadius: "15px" }}
       >
         {/* tab container to do either signup or login component */}
         <Tab.Container defaultActiveKey="login">
-          <Modal.Header closeButton>
+          <Modal.Header
+            closeButton
+            style={{
+              backgroundColor: "gray",
+              padding: "2rem",
+            }}
+          >
             <Modal.Title id="signup-modal">
               <Nav variant="pills">
                 <Nav.Item>
-                  <Nav.Link eventKey="login">Login</Nav.Link>
+                  <Nav.Link
+                    eventKey="login"
+                    style={{
+                      borderRadius: "20px",
+                      color: "white",
+                      padding: "0.5rem 1rem",
+                    }}
+                  >
+                    Login
+                  </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="signup">Sign Up</Nav.Link>
+                  <Nav.Link
+                    eventKey="signup"
+                    style={{
+                      borderRadius: "20px",
+                      color: "white",
+                      padding: "0.5rem 1rem",
+                    }}
+                  >
+                    Sign Up
+                  </Nav.Link>
                 </Nav.Item>
               </Nav>
             </Modal.Title>
           </Modal.Header>
-          <Modal.Body>
+          <Modal.Body
+            style={{
+              padding: "2rem",
+              backgroundColor: "#ffffff",
+              borderBottomLeftRadius: "15px",
+              borderBottomRightRadius: "15px",
+              boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+            }}
+          >
             <Tab.Content>
               <Tab.Pane eventKey="login">
                 <LoginForm handleModalClose={() => setShowModal(false)} />
