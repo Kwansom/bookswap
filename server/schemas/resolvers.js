@@ -1,14 +1,15 @@
-const { User } = require('../models'); // Import User model
-const { signToken } = require('../utils/auth'); // Import signToken utility for JWT signing
+const { User } = require("../models"); // Import User model
+const { signToken } = require("../utils/auth"); // Import signToken utility for JWT signing
 
 const resolvers = {
   Query: {
     // me: Returns the currently authenticated user
     me: async (parent, args, context) => {
       if (!context.user) {
-        throw new Error('You must be logged in!');
+        throw new Error("You must be logged in!");
       }
-      return context.user;
+      const userData = await User.findById(context.user._id);
+      return userData;
     },
   },
 
@@ -24,7 +25,7 @@ const resolvers = {
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new Error('Wrong password!');
+        throw new Error("Wrong password!");
       }
 
       const token = signToken(user);
@@ -42,7 +43,7 @@ const resolvers = {
     // saveBook: Adds a book to the user's savedBooks array
     saveBook: async (parent, { bookInput }, context) => {
       if (!context.user) {
-        throw new Error('You must be logged in!');
+        throw new Error("You must be logged in!");
       }
 
       const updatedUser = await User.findOneAndUpdate(
@@ -57,7 +58,7 @@ const resolvers = {
     // removeBook: Removes a book from the user's savedBooks array
     removeBook: async (parent, { bookId }, context) => {
       if (!context.user) {
-        throw new Error('You must be logged in!');
+        throw new Error("You must be logged in!");
       }
 
       const updatedUser = await User.findOneAndUpdate(
@@ -72,24 +73,22 @@ const resolvers = {
 
       return updatedUser;
     },
-    updateBook: async( parent, {bookId}, context) => {
-        if (!context.user){
-            throw new Error('You must be logged in!');
+    updateBook: async (parent, { bookId }, context) => {
+      if (!context.user) {
+        throw new Error("You must be logged in!");
+      }
+      const updatedStatus = await Book.findOneAndUpdate(
+        { _id: context.bookId._id },
+        { $pull: { status: { status } } },
+        { new: true }
+      );
 
-        }
-        const updatedStatus = await Book.findOneAndUpdate(
-            { _id: context.bookId._id },
-            { $pull: { status: { status } } },
-            { new: true }
-          );
-    
-          if (!updatedStatus) {
-            throw new Error("Couldn't find book with this id!");
-          }
-    
-          return updatedStatus;
-    }
+      if (!updatedStatus) {
+        throw new Error("Couldn't find book with this id!");
+      }
 
+      return updatedStatus;
+    },
   },
 };
 
