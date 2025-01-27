@@ -6,7 +6,8 @@ import { SAVEBOOK } from "../utils/mutations"; // Import the SAVE_BOOK mutation
 import Auth from "../utils/auth";
 import { searchGoogleBooks } from "../utils/API";
 import { saveBookIds, getSavedBookIds } from "../utils/localStorage";
-import "../../assets/SearchBook.css";
+import "../../assets/css/SearchBook.css";
+import "../../assets/images";
 
 const SearchBooks = () => {
   // Create the mutation function

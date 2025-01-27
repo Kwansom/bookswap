@@ -6,6 +6,7 @@ import { REMOVEBOOK } from "../utils/mutations";
 import Auth from "../utils/auth";
 import { removeBookId } from "../utils/localStorage";
 import { useMutation, useQuery } from "@apollo/client";
+import "../../assets/images";
 
 const SavedBooks = () => {
   const { loading, data } = useQuery(GET_ME);

@@ -3,6 +3,7 @@ import { Container, Card, Row, Col } from "react-bootstrap";
 
 import { getMe } from "../utils/API";
 import Auth from "../utils/auth";
+import "../../assets/images";
 
 const SwapBooks = () => {
   const [userData, setUserData] = useState({});

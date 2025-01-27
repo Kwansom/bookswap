@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Navbar, Nav, Container, Modal, Tab } from "react-bootstrap";
 import SignUpForm from "./SignupForm";
 import LoginForm from "./LoginForm";
-import "../../assets/NavBar.css";
+import "../../assets/css/NavBar.css";
 
 import Auth from "../utils/auth";
 
