@@ -1,7 +1,8 @@
 # Order of operations
 
-# BACK-END 
-TYPEDEFS & RESOLVERS 
+# BACK-END
+
+TYPEDEFS & RESOLVERS
 
 SCHEMAS/DATA MODELS
 
@@ -11,10 +12,10 @@ GET SERVER RUNNING
 
 Signup Page/Login page
 
-# BUILD PAGES ATOP 
+# BUILD PAGES ATOP
+
 Profile
 
 savedbooks
 
 swapbooks
-
