@@ -89,13 +89,13 @@ const resolvers = {
 
       return updatedStatus;
     },
-    swapBook: async (parent, { bookId }, context) => {
+    swapBook: async (parent, { bookInput }, context) => {
       if (!context.user) {
         throw new Error("You must be logged in!");
       }
       const addToSwap = await User.findOneAndUpdate(
         { _id: context.user._id },
-        { $put: { swapBooks: { bookId } } },
+        { $addToSet: { swapBooks: bookInput } ,$pull: { savedBooks: bookInput.bookId  } },
         { new: true }
       );
 
@@ -103,17 +103,17 @@ const resolvers = {
         throw new Error("Couldn't add book to swap!");
       }
 
-      const removeFromSaved = await User.findOneAndUpdate(
-        { _id: context.user._id },
-        { $pull: { savedBooks: { bookId } } },
-        { new: true }
-      );
+      // const removeFromSaved = await User.findOneAndUpdate(
+      //   { _id: context.user._id },
+      //   { $pull: { savedBooks: { bookId } } },
+      //   { new: true }
+      // );
 
-      if (!removeFromSaved) {
-        throw new Error("Couldn't remove this book from saved books!");
-      }
+      // if (!removeFromSaved) {
+      //   throw new Error("Couldn't remove this book from saved books!");
+      // }
 
-      return removeFromSaved;
+      return addToSwap;
     },
   },
 };

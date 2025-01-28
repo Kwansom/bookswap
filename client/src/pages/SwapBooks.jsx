@@ -35,7 +35,7 @@ const SwapBooks = () => {
   };
 
   // if data isn't here yet, say so
-  if (!userData.swapBooks) {
+  if (!swapData.swapBooks) {
     return <h2>LOADING...</h2>;
   }
 

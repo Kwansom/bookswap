@@ -34,7 +34,7 @@ const typeDefs = gql`
     updateBook(bookId: String!, status: String!): User
 
     # Swap a book from a user's savedBooks: accepts
-    swapBook(bookId: String!): User
+    swapBook(bookInput: BookInput!): User
   }
 
   # User type: defines the user data fields

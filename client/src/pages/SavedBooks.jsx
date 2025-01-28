@@ -42,6 +42,10 @@ const SavedBooks = () => {
   const handleSwapBook = async (bookId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     console.log(bookId);
+    const thisBook= userData.savedBooks.find((book)=> {
+      return book.bookId===bookId
+    })
+    console.log(thisBook)
     if (!token) {
       return false;
     }
@@ -49,12 +53,21 @@ const SavedBooks = () => {
     try {
       const { data } = await swapBook({
         variables: {
-          bookId,
+          bookInput:{
+            bookId: thisBook.bookId,
+            authors: thisBook.authors,
+            title: thisBook.title,
+            description: thisBook.description,
+            image: thisBook.image,
+          },
         },
       });
 
       removeBookId(bookId);
-      window.location.reload();
+
+       window.location.reload();
+      
+
     } catch (err) {
       console.error(err);
     }
