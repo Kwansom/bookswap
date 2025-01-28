@@ -8,6 +8,8 @@ import Auth from "../utils/auth";
 import { removeBookId } from "../utils/localStorage";
 import { useMutation, useQuery } from "@apollo/client";
 import "../../assets/images/bookSwapLogo.jpg";
+import toRead from "../../assets/images/toRead.jpg";
+import "../../assets/css/SavedBook.css"
 
 const SavedBooks = () => {
   const { loading, data } = useQuery(GET_ME);
@@ -53,13 +55,10 @@ const SavedBooks = () => {
 
       removeBookId(bookId);
       window.location.reload();
-      
     } catch (err) {
       console.error(err);
     }
   };
-
-
 
   // if data isn't here yet, say so
   if (!userData.savedBooks) {
@@ -68,9 +67,19 @@ const SavedBooks = () => {
 
   return (
     <>
-      <div fluid className="text-light bg-dark p-5">
+      <div fluid className="text-dark bg-light p-5 page-flex">
         <Container>
           <h1>Viewing saved books!</h1>
+          <img
+            className="bookworm"
+            src={toRead}
+            style={{
+              width: "400px",
+              position: "absolute",
+              right: "20px",
+              bottom: "20px",
+            }}
+          ></img>
         </Container>
       </div>
       <Container>
