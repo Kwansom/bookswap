@@ -7,7 +7,7 @@ import Auth from "../utils/auth";
 import { searchGoogleBooks } from "../utils/API";
 import { saveBookIds, getSavedBookIds } from "../utils/localStorage";
 import "../../assets/css/SearchBook.css";
-import "../../assets/images";
+import "../../assets/images/bookSwapLogo.jpg";
 
 const SearchBooks = () => {
   // Create the mutation function
@@ -71,6 +71,9 @@ const SearchBooks = () => {
     }
 
     try {
+      // Fallback for missing description
+      const description = bookToSave.description || "No description available";
+
       // Use the saveBook mutation here
       const { data } = await saveBook({
         variables: {
@@ -78,7 +81,7 @@ const SearchBooks = () => {
             bookId: bookToSave.bookId,
             authors: bookToSave.authors,
             title: bookToSave.title,
-            description: bookToSave.description,
+            description: description,
             image: bookToSave.image,
           },
         },
