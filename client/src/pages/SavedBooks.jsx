@@ -8,6 +8,8 @@ import Auth from "../utils/auth";
 import { removeBookId } from "../utils/localStorage";
 import { useMutation, useQuery } from "@apollo/client";
 import "../../assets/images/bookSwapLogo.jpg";
+import toRead from "../../assets/images/toRead.jpg";
+import "../../assets/css/SavedBook.css"
 
 const SavedBooks = () => {
   const { loading, data } = useQuery(GET_ME);
@@ -40,6 +42,10 @@ const SavedBooks = () => {
   const handleSwapBook = async (bookId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     console.log(bookId);
+    const thisBook= userData.savedBooks.find((book)=> {
+      return book.bookId===bookId
+    })
+    console.log(thisBook)
     if (!token) {
       return false;
     }
@@ -47,19 +53,25 @@ const SavedBooks = () => {
     try {
       const { data } = await swapBook({
         variables: {
-          bookId,
+          bookInput:{
+            bookId: thisBook.bookId,
+            authors: thisBook.authors,
+            title: thisBook.title,
+            description: thisBook.description,
+            image: thisBook.image,
+          },
         },
       });
 
       removeBookId(bookId);
-      window.location.reload();
+
+       window.location.reload();
       
+
     } catch (err) {
       console.error(err);
     }
   };
-
-
 
   // if data isn't here yet, say so
   if (!userData.savedBooks) {
@@ -68,9 +80,19 @@ const SavedBooks = () => {
 
   return (
     <>
-      <div fluid className="text-light bg-dark p-5">
+      <div fluid className="text-dark bg-light p-5 page-flex">
         <Container>
           <h1>Viewing saved books!</h1>
+          <img
+            className="bookworm"
+            src={toRead}
+            style={{
+              width: "400px",
+              position: "absolute",
+              right: "20px",
+              bottom: "20px",
+            }}
+          ></img>
         </Container>
       </div>
       <Container>
@@ -100,7 +122,7 @@ const SavedBooks = () => {
                     <p className="small">Authors: {book.authors}</p>
                     <Card.Text>{book.description}</Card.Text>
                     <Button
-                      className="btn-block btn-danger"
+                      className="deletebutton btn-block btn-danger"
                       onClick={() => handleDeleteBook(book.bookId)}
                     >
                       {" "}
@@ -108,12 +130,12 @@ const SavedBooks = () => {
                       Delete this Book!
                     </Button>
                     <Button
-                      className="btn-block btn-primary"
+                      className="swapbutton btn-block btn-primary"
                       onClick={() => handleSwapBook(book.bookId)}
                     >
                       {" "}
                       {/* Use _id here */}
-                      Mark this Book for Swap!
+                      Mark Book for Swap!
                     </Button>
                   </Card.Body>
                 </Card>

@@ -69,17 +69,33 @@ export const SAVEBOOK = gql`
         image
         link
       }
+     swapBooks {
+        bookId
+        authors
+        description
+        title
+        image
+        link
+      }
     }
   }
 `;
 
 export const SWAPBOOK = gql`
-  mutation SwapBook($bookId: String!) {
-    swapBook(bookId: $bookId) {
+  mutation SwapBook($bookInput: BookInput!) {
+    swapBook(bookInput: $bookInput) {
       _id
       bookCount
       email
       username
+      savedBooks {
+        bookId
+        authors
+        description
+        title
+        image
+        link
+      }
       swapBooks {
         bookId
         authors
