@@ -1,0 +1,25 @@
+.deletebutton {
+  background-color: red;
+  border-color: green;
+  border-radius: 50px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.deletebutton:hover {
+  transform: scale(1.1);
+  border-color: #5a2d98;
+  box-shadow: 5px 5px 10px rgba(0, 0, 255, 0.4);
+}
+
+.swapbutton {
+  background-color: green;
+  border-color: green;
+  border-radius: 50px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.swapbutton:hover {
+  transform: scale(1.1);
+  border-color: #5a2d98;
+  box-shadow: 5px 5px 10px rgba(0, 0, 255, 0.4);
+}
