@@ -110,7 +110,7 @@ const SearchBooks = () => {
               width: "300px",
               position: "absolute",
               right: "20px",
-              bottom: "5px"
+              bottom: "5px",
             }}
           ></img>
           <Form onSubmit={handleFormSubmit}>
@@ -167,13 +167,13 @@ const SearchBooks = () => {
                         disabled={savedBookIds?.some(
                           (savedBookId) => savedBookId === book.bookId
                         )}
-                        className="btn-block btn-info"
+                        className="savebutton btn-block btn-info"
                         onClick={() => handleSaveBook(book.bookId)}
                       >
                         {savedBookIds?.some(
                           (savedBookId) => savedBookId === book.bookId
                         )
-                          ? "This book has already been saved!"
+                          ? "This book has been saved!"
                           : "Save this Book!"}
                       </Button>
                     )}

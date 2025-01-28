@@ -109,7 +109,7 @@ const SavedBooks = () => {
                     <p className="small">Authors: {book.authors}</p>
                     <Card.Text>{book.description}</Card.Text>
                     <Button
-                      className="btn-block btn-danger"
+                      className="deletebutton btn-block btn-danger"
                       onClick={() => handleDeleteBook(book.bookId)}
                     >
                       {" "}
@@ -117,12 +117,12 @@ const SavedBooks = () => {
                       Delete this Book!
                     </Button>
                     <Button
-                      className="btn-block btn-primary"
+                      className="swapbutton btn-block btn-primary"
                       onClick={() => handleSwapBook(book.bookId)}
                     >
                       {" "}
                       {/* Use _id here */}
-                      Mark this Book for Swap!
+                      Mark Book for Swap!
                     </Button>
                   </Card.Body>
                 </Card>
