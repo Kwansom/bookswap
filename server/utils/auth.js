@@ -31,7 +31,6 @@ module.exports = {
       req.user = data;
     } catch {
       console.log("Invalid token");
-      return res.status(401).json({ message: "not an authorized user" });
     }
     return req;
   },

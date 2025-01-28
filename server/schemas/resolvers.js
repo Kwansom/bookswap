@@ -89,6 +89,32 @@ const resolvers = {
 
       return updatedStatus;
     },
+    swapBook: async (parent, { bookId }, context) => {
+      if (!context.user) {
+        throw new Error("You must be logged in!");
+      }
+      const addToSwap = await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $put: { swapBooks: { bookId } } },
+        { new: true }
+      );
+
+      if (!addToSwap) {
+        throw new Error("Couldn't add book to swap!");
+      }
+
+      const removeFromSaved = await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $pull: { savedBooks: { bookId } } },
+        { new: true }
+      );
+
+      if (!removeFromSaved) {
+        throw new Error("Couldn't remove this book from saved books!");
+      }
+
+      return removeFromSaved;
+    },
   },
 };
 
