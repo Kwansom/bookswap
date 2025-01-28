@@ -73,6 +73,25 @@ export const SAVEBOOK = gql`
   }
 `;
 
+export const SWAPBOOK = gql`
+  mutation SwapBook($bookId: String!) {
+    swapBook(bookId: $bookId) {
+      _id
+      bookCount
+      email
+      username
+      swapBooks {
+        bookId
+        authors
+        description
+        title
+        image
+        link
+      }
+    }
+  }
+`;
+
 export const REMOVEBOOK = gql`
   mutation removeBook($bookId: String!) {
     removeBook(bookId: $bookId) {

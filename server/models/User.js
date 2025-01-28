@@ -24,6 +24,8 @@ const userSchema = new Schema(
     // set savedBooks to be an array of data that adheres to the bookSchema
     savedBooks: [bookSchema],
 
+    swapBooks: [bookSchema],
+
     street: {
         type: String,
     },

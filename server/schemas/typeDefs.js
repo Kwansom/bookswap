@@ -32,6 +32,9 @@ const typeDefs = gql`
 
     # Update a book from a user's savedBooks: accepts bookID, returns updated book status
     updateBook(bookId: String!, status: String!): User
+
+    # Swap a book from a user's savedBooks: accepts
+    swapBook(bookId: String!): User
   }
 
   # User type: defines the user data fields
@@ -41,6 +44,7 @@ const typeDefs = gql`
     email: String
     bookCount: Int
     savedBooks: [Book]
+    swapBooks: [Book]
     street: String
     city: String
     state: String

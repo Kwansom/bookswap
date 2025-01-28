@@ -22,3 +22,26 @@ export const GET_ME = gql`
         }
     }
 `;
+
+export const GET_SWAP = gql`
+    {
+        me {
+            _id
+            username
+            email
+            street
+            city
+            state
+            zipCode
+            bookCount
+            swapBooks {
+                bookId
+                authors
+                description
+                title
+                image
+                link
+            }
+        }
+    }
+`;
