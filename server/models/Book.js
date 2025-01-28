@@ -26,9 +26,9 @@ const bookSchema = new Schema({
     type: String,
     required: true,
   },
-  status: {
-    type: String,
-  },
+  // status: {
+  //   type: String,
+  // },
     
 });
 
