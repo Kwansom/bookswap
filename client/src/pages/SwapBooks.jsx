@@ -10,7 +10,7 @@ import "../../assets/images/bookSwapLogo.jpg";
 const SwapBooks = () => {
   const { loading, data } = useQuery(GET_SWAP);
   const [swapBook, { error }] = useMutation(SWAPBOOK);
-  const swapData = data?.swap || {};
+  const swapData = data?.me?.swapBooks || [];
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleSwapBook = async (bookId) => {
@@ -33,10 +33,10 @@ const SwapBooks = () => {
       console.error(err);
     }
   };
-
+  console.log(swapData);
   // if data isn't here yet, say so
-  if (!swapData.swapBooks) {
-    return <h2>LOADING...</h2>;
+  if (!swapData) {
+    return <h2>Nothing for Swap Today...Come Back Tomorrow!</h2>;
   }
 
   return (
@@ -48,14 +48,14 @@ const SwapBooks = () => {
       </div>
       <Container>
         <h2 className="pt-5">
-          {userData.swapBooks.length
-            ? `Viewing ${userData.swapBooks.length} saved ${
-                userData.swapBooks.length === 1 ? "book" : "books"
+          {swapData.length
+            ? `Viewing ${swapData.length} saved ${
+                swapData.length === 1 ? "book" : "books"
               }:`
             : "You have no saved books!"}
         </h2>
         <Row>
-          {userData.swapBooks.map((book) => {
+          {swapData.map((book) => {
             return (
               <Col md="4" key={book.bookId}>
                 {" "}
