@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Container, Card, Button, Row, Col } from "react-bootstrap";
-
+import toSwap from "../../assets/images/toSwap.jpg";
 import { GET_SWAP } from "../utils/queries";
 import { SWAPBOOK } from "../utils/mutations";
 import Auth from "../utils/auth";
@@ -44,6 +44,16 @@ const SwapBooks = () => {
       <div fluid className="text-light bg-dark p-5">
         <Container>
           <h1>Viewing books available to swap!</h1>
+          <img
+            className="swapworm"
+            src={toSwap}
+            style={{
+              width: "300px",
+              position: "absolute",
+              right: "20px",
+              bottom: "80px",
+            }}
+          ></img>
         </Container>
       </div>
       <Container>
@@ -73,7 +83,7 @@ const SwapBooks = () => {
                     <p className="small">Authors: {book.authors}</p>
                     <Card.Text>{book.description}</Card.Text>
                     <Button
-                      className="btn-block btn-danger"
+                      className="btn-block btn-danger swapbutton"
                       onClick={() => handleSwapBook(book.bookId)}
                     >
                       {" "}
