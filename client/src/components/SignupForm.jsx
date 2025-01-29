@@ -15,10 +15,10 @@ const SignupForm = () => {
     username: "",
     email: "",
     password: "",
-    street: "",
-    city: "",
-    state: "",
-    zipCode: "",
+    // street: "",
+    // city: "",
+    // state: "",
+    // zipCode: "",
   });
   // set state for form validation
   const [validated] = useState(false);
@@ -47,10 +47,10 @@ const SignupForm = () => {
           username: userFormData.username,
           email: userFormData.email,
           password: userFormData.password,
-          street: userFormData.street,
-          city: userFormData.city,
-          state: userFormData.state,
-          zipCode: userFormData.zipCode,
+          // street: userFormData.street,
+          // city: userFormData.city,
+          // state: userFormData.state,
+          // zipCode: userFormData.zipCode,
         },
       });
 
@@ -70,10 +70,10 @@ const SignupForm = () => {
       username: "",
       email: "",
       password: "",
-      street: "",
-      city: "",
-      state: "",
-      zipCode: "",
+      // street: "",
+      // city: "",
+      // state: "",
+      // zipCode: "",
     });
   };
 
@@ -151,7 +151,7 @@ const SignupForm = () => {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group className="mb-3">
+        {/* <Form.Group className="mb-3">
           <Form.Label htmlFor="street" className="form-label">
             Street
           </Form.Label>
@@ -217,22 +217,23 @@ const SignupForm = () => {
             value={userFormData.zipCode}
             required
             className="form-control"
-          />
-          <Form.Control.Feedback type="invalid">
+         <Form.Control.Feedback type="invalid">
             ZIP Code is required!
-          </Form.Control.Feedback>
-        </Form.Group>
+          </Form.Control.Feedback> 
+        </Form.Group>*/}
 
         <Button
           disabled={
             !(
-              userFormData.username &&
-              userFormData.email &&
-              userFormData.password &&
-              userFormData.street &&
-              userFormData.city &&
-              userFormData.state &&
-              userFormData.zipCode
+              (
+                userFormData.username &&
+                userFormData.email &&
+                userFormData.password
+              )
+              // userFormData.street &&
+              // userFormData.city &&
+              // userFormData.state &&
+              // userFormData.zipCode
             )
           }
           type="submit"
