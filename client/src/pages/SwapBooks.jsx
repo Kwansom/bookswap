@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
+
 import { Container, Card, Button, Row, Col, Form } from "react-bootstrap";
 import { useMutation, useQuery } from "@apollo/client";
+import toSwap from "../../assets/images/toSwap.jpg";
+
 import { GET_SWAP } from "../utils/queries";
 import { SWAPBOOK } from "../utils/mutations";
 import Auth from "../utils/auth";
@@ -76,6 +79,16 @@ const SwapBooks = () => {
       <div className="text-light bg-dark p-5">
         <Container>
           <h1>Viewing books available to swap!</h1>
+          <img
+            className="swapworm"
+            src={toSwap}
+            style={{
+              width: "300px",
+              position: "absolute",
+              right: "20px",
+              bottom: "80px",
+            }}
+          ></img>
         </Container>
       </div>
       <Container>
@@ -127,7 +140,7 @@ const SwapBooks = () => {
                     )}
 
                     <Button
-                      className="btn-block btn-danger"
+                      className="btn-block btn-danger swapbutton"
                       onClick={() => handleSwapBook(book.bookId)}
                     >
                       Claim this Book!
