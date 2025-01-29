@@ -68,6 +68,7 @@ export const SAVEBOOK = gql`
         title
         image
         link
+        ownerEmail
       }
       swapBooks {
         bookId
@@ -76,6 +77,7 @@ export const SAVEBOOK = gql`
         title
         image
         link
+        ownerEmail
       }
     }
   }
@@ -95,6 +97,7 @@ export const SWAPBOOK = gql`
         title
         image
         link
+        ownerEmail
       }
       swapBooks {
         bookId
@@ -103,6 +106,7 @@ export const SWAPBOOK = gql`
         title
         image
         link
+        ownerEmail
       }
     }
   }
@@ -121,6 +125,7 @@ export const REMOVEBOOK = gql`
         title
         image
         link
+        ownerEmail
       }
     }
   }

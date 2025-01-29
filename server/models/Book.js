@@ -26,6 +26,9 @@ const bookSchema = new Schema({
     type: String,
     required: true,
   },
+  ownerEmail:{
+    type: String,
+  }
   // status: {
   //   type: String,
   // },

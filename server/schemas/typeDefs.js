@@ -63,6 +63,7 @@ const typeDefs = gql`
     title: String
     image: String
     link: String
+    ownerEmail: String
   }
 
   # Auth type: returned after login or user creation
@@ -79,6 +80,7 @@ const typeDefs = gql`
     title: String
     image: String
     link: String
+    ownerEmail: String
   }
 `;
 

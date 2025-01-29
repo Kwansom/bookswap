@@ -59,6 +59,7 @@ const SavedBooks = () => {
             title: thisBook.title,
             description: thisBook.description,
             image: thisBook.image,
+            ownerEmail: userData.email
           },
         },
       });

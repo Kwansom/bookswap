@@ -35,6 +35,7 @@ export const GET_SWAP = gql`
         title
         image
         link
+        ownerEmail
       }
     }
   }
