@@ -7,6 +7,10 @@ const typeDefs = gql`
     # Get the authenticated user's data
     me: User
   }
+  type Query {
+    # Get all swapbooks from all user data
+    getSwap: User
+  }
 
   # Mutation type
   type Mutation {
@@ -17,10 +21,10 @@ const typeDefs = gql`
     addUser(
       username: String!
       email: String!
-      street: String!
-      city: String!
-      state: String!
-      zipCode: String!
+      # street: String!
+      # city: String!
+      # state: String!
+      # zipCode: String!
       password: String!
     ): Auth
 
@@ -45,10 +49,10 @@ const typeDefs = gql`
     bookCount: Int
     savedBooks: [Book]
     swapBooks: [Book]
-    street: String
-    city: String
-    state: String
-    zipCode: String
+    # street: String
+    # city: String
+    # state: String
+    # zipCode: String
   }
 
   # Book type: defines the book data fields

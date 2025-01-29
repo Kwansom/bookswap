@@ -17,29 +17,29 @@ export const ADD_USER = gql`
     $username: String!
     $email: String!
     $password: String!
-    $street: String!
-    $city: String!
-    $state: String!
-    $zipCode: String!
-  ) {
+  ) # $street: String!
+  # $city: String!
+  # $state: String!
+  # $zipCode: String!
+  {
     addUser(
       username: $username
       email: $email
       password: $password
-      street: $street
-      city: $city
-      state: $state
-      zipCode: $zipCode
-    ) {
+    ) # street: $street
+    # city: $city
+    # state: $state
+    # zipCode: $zipCode
+    {
       token
       user {
         _id
         username
         email
-        street
-        city
-        state
-        zipCode
+        # street
+        # city
+        # state
+        # zipCode
         bookCount
         savedBooks {
           authors
@@ -69,7 +69,7 @@ export const SAVEBOOK = gql`
         image
         link
       }
-     swapBooks {
+      swapBooks {
         bookId
         authors
         description

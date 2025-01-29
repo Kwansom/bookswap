@@ -11,6 +11,13 @@ const resolvers = {
       const userData = await User.findById(context.user._id);
       return userData;
     },
+    getSwap: async (parent, args, context) => {
+      if (!context.user) {
+        throw new Error("You must be logged in!");
+      }
+      const userData = await User.findById(context.user._id);
+      return userData;
+    },
   },
 
   Mutation: {
@@ -95,7 +102,10 @@ const resolvers = {
       }
       const addToSwap = await User.findOneAndUpdate(
         { _id: context.user._id },
-        { $addToSet: { swapBooks: bookInput } ,$pull: { savedBooks: bookInput.bookId  } },
+        {
+          $addToSet: { swapBooks: bookInput },
+          $pull: { savedBooks: bookInput.bookId },
+        },
         { new: true }
       );
 
