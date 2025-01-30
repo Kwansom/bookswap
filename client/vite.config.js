@@ -13,6 +13,7 @@ export default defineConfig({
         secure: false,
         changeOrigin: true,
       },
+    build: { chunkSizeWarningLimit: 1600, }
     },
   },
 });
