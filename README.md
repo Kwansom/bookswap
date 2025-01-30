@@ -13,11 +13,11 @@ A full-stacjk MERN application for bookworms focused on finding, sharing, and sw
     •	[Technologies Used](#technologies-used)
     •	[License](#license)
 
-# Link to deployed application
+## Link to deployed application
 
 Live link on Render: https://bookswap-9fe6.onrender.com
 
-# Questions
+## Questions
 
 If you have any questions about the project or would like to contribute, feel free to reach out to the team via email:
 
@@ -26,7 +26,7 @@ If you have any questions about the project or would like to contribute, feel fr
     •	Thomas White: tjwhitephd@gmail.com
     •	Tina Rahimian: tina.rahimian94@gmail.com
 
-# Contributing
+## Contributing
 
 This application was developed as part of a collaborative group project: \
 • Dawson Dohlen \
@@ -38,7 +38,7 @@ Supported by:
 • Instructor: John Young
 • Teaching Assistant: Zac Warner
 
-# Technologies Used
+## Technologies Used
 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 
@@ -51,6 +51,6 @@ Supported by:
 ![Render](https://img.shields.io/badge/Render-%46E3B7.svg?style=for-the-badge&logo=render&logoColor=white)
 
 
-# License
+## License
 
 This project is licensed under the MIT License. See the LICENSE file for more details.
