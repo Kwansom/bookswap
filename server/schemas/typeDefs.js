@@ -39,6 +39,9 @@ const typeDefs = gql`
 
     # Swap a book from a user's savedBooks: accepts
     swapBook(bookInput: BookInput!): User
+
+    # 
+    claimBook(bookInput: BookInput!): User
   }
 
   # User type: defines the user data fields

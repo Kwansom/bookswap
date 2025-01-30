@@ -62,6 +62,28 @@ const resolvers = {
       return updatedUser;
     },
 
+    claimBook: async (parent, { bookInput }, context) => {
+      console.log("Incoming Data: ", bookInput);
+      const removeId = bookInput.bookId;
+
+      if (!context.user) {
+        throw new Error("You must be logged in!");
+      }
+
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { 
+          $addToSet: { savedBooks: bookInput },
+          $pull: { swapBooks: { removeId } },
+        },
+        { new: true, runValidators: true }
+      );
+
+      console.log("Updated User: ", updatedUser);
+
+      return updatedUser;
+    },
+
     // removeBook: Removes a book from the user's savedBooks array
     removeBook: async (parent, { bookId }, context) => {
       if (!context.user) {

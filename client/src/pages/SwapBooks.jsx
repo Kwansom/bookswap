@@ -1,33 +1,40 @@
 import { useState, useEffect } from "react";
-
-import { Container, Card, Button, Row, Col, Form } from "react-bootstrap";
+import { Container, Card, Button, Row, Col } from "react-bootstrap";
+import { GET_SWAP } from "../utils/queries";
+import { CLAIMBOOK, SAVEBOOK } from "../utils/mutations";
+import { getSavedBookIds, removeBookId } from "../utils/localStorage";
+import Auth from "../utils/auth";
 import { useMutation, useQuery } from "@apollo/client";
 import toSwap from "../../assets/images/toSwap.jpg";
-import "../../assets/css/SwapBook.css";
-import { GET_SWAP } from "../utils/queries";
-import { SWAPBOOK } from "../utils/mutations";
-import Auth from "../utils/auth";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for routing
 import "../../assets/images/bookSwapLogo.jpg";
 
 // Import EmojiPicker
 import EmojiPicker from "emoji-picker-react";
 
+
+// Function to handle showing or hiding the Emoji Picker for each book
+const toggleEmojiPicker = (bookId) => {
+  setShowEmojiPicker((prevState) => ({
+    ...prevState,
+    [bookId]: !prevState[bookId],
+  }));
+};
+
+
 const SwapBooks = () => {
+  // Create state to hold saved bookId values
+  const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
   const { loading, data } = useQuery(GET_SWAP);
-  const [swapBook, { error }] = useMutation(SWAPBOOK);
-  const swapData = data?.me?.swapBooks || [];
+  // const [swapBook, { error }] = useMutation(SWAPBOOK);
+//  const [saveBook, { error }] = useMutation(SAVEBOOK);
+  const [claimBook, { error}] = useMutation(CLAIMBOOK);
+  const swapData = data?.me.swapBooks || [];
 
-  // State for selected emoji for each book
   const [selectedEmojis, setSelectedEmojis] = useState({});
-
-  // State for controlling visibility of the Emoji Picker for each book
   const [showEmojiPicker, setShowEmojiPicker] = useState({});
 
-  // State for storing the user's email
   const [userEmail, setUserEmail] = useState("");
 
-  // Function to handle emoji selection for each book
   const onEmojiClick = (bookId, emojiObject, event) => {
     console.log(bookId);
     console.log(emojiObject);
@@ -45,7 +52,6 @@ const SwapBooks = () => {
     // console.log(showEmojiPicker);
   };
 
-  // Function to handle showing or hiding the Emoji Picker for each book
   const toggleEmojiPicker = (bookId) => {
     setShowEmojiPicker((prevState) => ({
       ...prevState,
@@ -53,9 +59,10 @@ const SwapBooks = () => {
     }));
   };
 
-  // Function to handle swapping the book
+  // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleSwapBook = async (bookId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
+    console.log(bookId);
     if (!token) {
       return false;
     }
@@ -68,12 +75,53 @@ const SwapBooks = () => {
       });
 
       // upon success, remove book's id from localStorage
+     // swapBookId(bookId);
     } catch (err) {
       console.error(err);
     }
   };
 
-  console.log(swapData);
+  // Create function to handle saving a book to our database
+  const handleClaimBook = async (bookId) => {
+    // Find the book in `searchedBooks` state by the matching id
+    const bookToSave = swapData.find((book) => book.bookId === bookId);
+    
+    // Get token
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
+    try {
+      // Fallback for missing description
+      const description = bookToSave.description || "No description available";
+
+      // Use the saveBook mutation here
+      const { data } = await claimBook({
+        variables: {
+          bookInput: {
+            bookId: bookToSave.bookId,
+            authors: bookToSave.authors,
+            title: bookToSave.title,
+            description: description,
+            image: bookToSave.image,
+          },
+        },
+      });
+
+      // Check if the response is successful
+      if (!data) {
+        throw new Error("something went wrong!");
+      }
+      removeBookId(bookId);
+      // If book successfully saves to user's account, save book id to state
+      setSavedBookIds([...savedBookIds, bookToSave.bookId]);
+      window.location.reload();
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   // if data isn't here yet, say so
   if (!swapData) {
@@ -82,7 +130,7 @@ const SwapBooks = () => {
 
   return (
     <>
-      <div className="text-light bg-dark p-5">
+      <div fluid className="text-light bg-dark p-5">
         <Container>
           <h1>Viewing books available to swap!</h1>
           <img
@@ -103,12 +151,14 @@ const SwapBooks = () => {
             ? `Viewing ${swapData.length} saved ${
                 swapData.length === 1 ? "book" : "books"
               }:`
-            : "You have no book to swap!"}
+            : "You have no books to swap!"}
         </h2>
         <Row>
           {swapData.map((book) => {
             return (
               <Col md="4" key={book.bookId}>
+                {" "}
+                {/* Use _id as key */}
                 <Card border="dark">
                   {book.image ? (
                     <Card.Img
@@ -154,8 +204,8 @@ const SwapBooks = () => {
                     )}
 
                     <Button
-                      className="btn-block btn-danger swapbutton"
-                      onClick={() => handleSwapBook(book.bookId)}
+                      className="btn-block btn-danger"
+                      onClick={() => handleClaimBook(book.bookId)}
                     >
                       Claim this Book!
                     </Button>
@@ -171,3 +221,4 @@ const SwapBooks = () => {
 };
 
 export default SwapBooks;
+
