@@ -1,11 +1,11 @@
-.emobutton {
+.deletebutton {
   background-color: red;
   border-color: green;
   border-radius: 50px;
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-.emobutton:hover {
+.deletebutton:hover {
   transform: scale(1.1);
   background-color: green;
   border-color: #5a2d98;

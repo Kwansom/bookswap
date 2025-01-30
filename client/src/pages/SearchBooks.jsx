@@ -157,7 +157,7 @@ const SearchBooks = () => {
                         disabled={savedBookIds?.some(
                           (savedBookId) => savedBookId === book.bookId
                         )}
-                        className="btn-block btn-info"
+                        className="btn-block btn-info savebutton"
                         onClick={() => handleSaveBook(book.bookId)}
                       >
                         {savedBookIds?.some(

@@ -11,7 +11,6 @@ import "../../assets/images/bookSwapLogo.jpg";
 // Import EmojiPicker
 import EmojiPicker from "emoji-picker-react";
 
-
 // Function to handle showing or hiding the Emoji Picker for each book
 const toggleEmojiPicker = (bookId) => {
   setShowEmojiPicker((prevState) => ({
@@ -20,14 +19,13 @@ const toggleEmojiPicker = (bookId) => {
   }));
 };
 
-
 const SwapBooks = () => {
   // Create state to hold saved bookId values
   const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
   const { loading, data } = useQuery(GET_SWAP);
   // const [swapBook, { error }] = useMutation(SWAPBOOK);
-//  const [saveBook, { error }] = useMutation(SAVEBOOK);
-  const [claimBook, { error}] = useMutation(CLAIMBOOK);
+  //  const [saveBook, { error }] = useMutation(SAVEBOOK);
+  const [claimBook, { error }] = useMutation(CLAIMBOOK);
   const swapData = data?.me.swapBooks || [];
 
   const [selectedEmojis, setSelectedEmojis] = useState({});
@@ -75,7 +73,7 @@ const SwapBooks = () => {
       });
 
       // upon success, remove book's id from localStorage
-     // swapBookId(bookId);
+      // swapBookId(bookId);
     } catch (err) {
       console.error(err);
     }
@@ -85,7 +83,7 @@ const SwapBooks = () => {
   const handleClaimBook = async (bookId) => {
     // Find the book in `searchedBooks` state by the matching id
     const bookToSave = swapData.find((book) => book.bookId === bookId);
-    
+
     // Get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -180,7 +178,7 @@ const SwapBooks = () => {
 
                     {/* Add Emoji Button */}
                     <Button
-                      className="emobutton"
+                      className="deletebutton"
                       variant="primary"
                       onClick={() => toggleEmojiPicker(book.bookId)}
                     >
@@ -204,7 +202,7 @@ const SwapBooks = () => {
                     )}
 
                     <Button
-                      className="btn-block btn-danger"
+                      className="swapbutton btn-block btn-danger"
                       onClick={() => handleClaimBook(book.bookId)}
                     >
                       Claim this Book!
@@ -221,4 +219,3 @@ const SwapBooks = () => {
 };
 
 export default SwapBooks;
-
