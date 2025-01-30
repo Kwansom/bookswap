@@ -100,17 +100,69 @@ const resolvers = {
       if (!context.user) {
         throw new Error("You must be logged in!");
       }
-      const addToSwap = await User.findOneAndUpdate(
-        { _id: context.user._id },
-        {
-          $addToSet: { swapBooks: bookInput },
-          $pull: { savedBooks: bookInput.bookId },
-        },
-        { new: true }
-      );
+      const user = await User.findOne({ _id: context.user._id });
+      var isInArray =
+        user.swapBooks.find(function (book) {
+          return book.bookId === bookInput.bookId;
+        }) !== undefined;
 
-      if (!addToSwap) {
-        throw new Error("Couldn't add book to swap!");
+      console.log(isInArray);
+
+      // const addToSwap = await User.findOneAndUpdate(
+      //   { _id: context.user._id },
+      //   {
+      //     // $cond: {
+      //     //   if: isInArray,
+      //     //   then: {
+      //     //     $addToSet: { swapBooks: bookInput },
+      //     //     $pull: { savedBooks: { bookId: bookInput.bookId } },
+      //     //   },
+      //     //   else: { $pull: { savedBooks: { bookId: bookInput.bookId } } },
+      //     // },
+      //     $cond: [
+      //       !isInArray,
+      //       {
+      //         $addToSet: { swapBooks: bookInput },
+      //         $pull: { savedBooks: { bookId: bookInput.bookId } },
+      //       },
+      //       { $pull: { savedBooks: { bookId: bookInput.bookId } } },
+      //     ],
+      //   },
+
+      //   { new: true }
+      // );
+      // if (!addToSwap) {
+      //   throw new Error("Couldn't add book to swap!");
+      // }
+
+      // return addToSwap;
+
+      if (isInArray) {
+        console.log("Already in Swap Books!");
+        const removeFromSave = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $pull: { savedBooks: { bookId: bookInput.bookId } },
+          },
+          { new: true }
+        );
+        if (!removeFromSave) {
+          throw new Error("Couldn't add book to swap!");
+        }
+        return removeFromSave;
+      } else {
+        const addToSwap = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $addToSet: { swapBooks: bookInput },
+            $pull: { savedBooks: { bookId: bookInput.bookId } },
+          },
+          { new: true }
+        );
+        if (!addToSwap) {
+          throw new Error("Couldn't add book to swap!");
+        }
+        return addToSwap;
       }
 
       // const removeFromSaved = await User.findOneAndUpdate(
@@ -122,8 +174,6 @@ const resolvers = {
       // if (!removeFromSaved) {
       //   throw new Error("Couldn't remove this book from saved books!");
       // }
-
-      return addToSwap;
     },
   },
 };
