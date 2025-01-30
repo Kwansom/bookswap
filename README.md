@@ -3,13 +3,11 @@
 # Description
 A full-stacjk MERN application for bookworms focused on finding, sharing, and swapping their favorite books.
 
-## Enjoy sharing and swapping your favorite reads with BookSwap!
+Enjoy sharing and swapping your favorite reads with BookSwap!
 
 # Table of Contents
 
 [Link to deployed application](#link-to-deployed-application)
-
-[Questions](#questions)
 
 [Contributors](#contributing)
 
@@ -21,22 +19,13 @@ A full-stacjk MERN application for bookworms focused on finding, sharing, and sw
 
 Live link on Render: https://bookswap-9fe6.onrender.com
 
-## Questions
-
-If you have any questions about the project or would like to contribute, feel free to reach out to the team via email:
-
-    •	Dawson Dohlen: d.dohlen@pm.me
-    •	Kun Wansom: wansom.kun@gmail.com
-    •	Thomas White: tjwhitephd@gmail.com
-    •	Tina Rahimian: tina.rahimian94@gmail.com
-
 ## Contributing
 
 This application was developed as part of a collaborative group project: \
-• Dawson Dohlen \
-• Kun Wansom \
-• Thomas White \
-• Tina Rahimian
+• Dawson Dohlen: d.dohlen@pm.me \
+• Kun Wansom: wansom.kun@gmail.com \
+• Thomas White: tjwhitephd@gmail.com  \
+• Tina Rahimian: tina.rahimian94@gmail.com
 
 Supported by:
 • Instructor: John Young
