@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Container, Card, Button, Row, Col, Form } from "react-bootstrap";
 import { useMutation, useQuery } from "@apollo/client";
 import toSwap from "../../assets/images/toSwap.jpg";
-
+import "../../assets/css/SwapBook.css";
 import { GET_SWAP } from "../utils/queries";
 import { SWAPBOOK } from "../utils/mutations";
 import Auth from "../utils/auth";
@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom"; // Import useNavigate for routin
 import "../../assets/images/bookSwapLogo.jpg";
 
 // Import EmojiPicker
-import EmojiPicker from 'emoji-picker-react';
+import EmojiPicker from "emoji-picker-react";
 
 const SwapBooks = () => {
   const { loading, data } = useQuery(GET_SWAP);
@@ -25,10 +25,13 @@ const SwapBooks = () => {
   const [showEmojiPicker, setShowEmojiPicker] = useState({});
 
   // State for storing the user's email
-  const [userEmail, setUserEmail] = useState('');
+  const [userEmail, setUserEmail] = useState("");
 
   // Function to handle emoji selection for each book
-  const onEmojiClick = (bookId, event, emojiObject) => {
+  const onEmojiClick = (bookId, emojiObject, event) => {
+    console.log(bookId);
+    console.log(emojiObject);
+    console.log(event);
     setSelectedEmojis((prevState) => ({
       ...prevState,
       [bookId]: emojiObject.emoji,
@@ -37,6 +40,9 @@ const SwapBooks = () => {
       ...prevState,
       [bookId]: false,
     }));
+
+    // console.log(selectedEmojis);
+    // console.log(showEmojiPicker);
   };
 
   // Function to handle showing or hiding the Emoji Picker for each book
@@ -96,7 +102,7 @@ const SwapBooks = () => {
           {swapData.length
             ? `Viewing ${swapData.length} saved ${
                 swapData.length === 1 ? "book" : "books"
-              }:` 
+              }:`
             : "You have no book to swap!"}
         </h2>
         <Row>
@@ -117,26 +123,34 @@ const SwapBooks = () => {
                     <Card.Text>{book.description}</Card.Text>
 
                     {/* Display the user's email who saved the book */}
-                    <p>Book Owner Contact to Swap: <a href="mailto:${book.ownerEmail}">{book.ownerEmail}</a></p>
+                    <p>
+                      Book Owner Contact to Swap:{" "}
+                      <a href="mailto:${book.ownerEmail}">{book.ownerEmail}</a>
+                    </p>
 
                     {/* Add Emoji Button */}
                     <Button
+                      className="emobutton"
                       variant="primary"
                       onClick={() => toggleEmojiPicker(book.bookId)}
                     >
-                      {showEmojiPicker[book.bookId] ? "Hide Emojis" : "Add Emoji"}
+                      {showEmojiPicker[book.bookId] ? "Hide Emojis" : "Emote"}
                     </Button>
 
                     {/* Show Emoji Picker when the button is clicked */}
                     {showEmojiPicker[book.bookId] && (
                       <div>
                         <h5>Select Emoji:</h5>
-                        <EmojiPicker onEmojiClick={(e, emoji) => onEmojiClick(book.bookId, e, emoji)} />
+                        <EmojiPicker
+                          onEmojiClick={(e, emoji) =>
+                            onEmojiClick(book.bookId, e, emoji)
+                          }
+                        />
                       </div>
                     )}
 
                     {selectedEmojis[book.bookId] && (
-                      <p>Selected Emoji: {selectedEmojis[book.bookId]}</p>
+                      <h2>{selectedEmojis[book.bookId]}</h2>
                     )}
 
                     <Button
