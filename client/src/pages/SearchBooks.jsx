@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Container, Col, Form, Button, Card, Row } from "react-bootstrap";
 import { useMutation } from "@apollo/client"; // Import useMutation from Apollo Client
 import { SAVEBOOK } from "../utils/mutations"; // Import the SAVE_BOOK mutation
-import globalWorm from "../../assets/images/globalSearchWorm.jpg";
+
 import Auth from "../utils/auth";
 import { searchGoogleBooks } from "../utils/API";
 import { saveBookIds, getSavedBookIds } from "../utils/localStorage";
@@ -62,7 +62,7 @@ const SearchBooks = () => {
   const handleSaveBook = async (bookId) => {
     // Find the book in `searchedBooks` state by the matching id
     const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
-
+    
     // Get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -103,16 +103,6 @@ const SearchBooks = () => {
       <div className="text-dark bg-light p-5">
         <Container>
           <h1 className="searchbooks text-center">Do you even read?</h1>
-          <img
-            className="globalworm"
-            src={globalWorm}
-            style={{
-              width: "300px",
-              position: "absolute",
-              right: "20px",
-              bottom: "5px",
-            }}
-          ></img>
           <Form onSubmit={handleFormSubmit}>
             <Row>
               <Col xs={12} md={8}>
@@ -167,13 +157,13 @@ const SearchBooks = () => {
                         disabled={savedBookIds?.some(
                           (savedBookId) => savedBookId === book.bookId
                         )}
-                        className="savebutton btn-block btn-info"
+                        className="btn-block btn-info"
                         onClick={() => handleSaveBook(book.bookId)}
                       >
                         {savedBookIds?.some(
                           (savedBookId) => savedBookId === book.bookId
                         )
-                          ? "This book has been saved!"
+                          ? "This book has already been saved!"
                           : "Save this Book!"}
                       </Button>
                     )}

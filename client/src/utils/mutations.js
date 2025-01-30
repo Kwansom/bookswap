@@ -112,6 +112,35 @@ export const SWAPBOOK = gql`
   }
 `;
 
+export const CLAIMBOOK = gql`
+  mutation claimBook($bookInput: BookInput!) {
+    claimBook(bookInput: $bookInput) {
+      _id
+      bookCount
+      email
+      username
+      savedBooks {
+        bookId
+        authors
+        description
+        title
+        image
+        link
+        ownerEmail
+      }
+      swapBooks {
+        bookId
+        authors
+        description
+        title
+        image
+        link
+        ownerEmail
+      }
+    }
+  }
+`
+
 export const REMOVEBOOK = gql`
   mutation removeBook($bookId: String!) {
     removeBook(bookId: $bookId) {
