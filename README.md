@@ -7,11 +7,15 @@ A full-stacjk MERN application for bookworms focused on finding, sharing, and sw
 
 # Table of Contents
 
-    •	[Link to deployed application](#link-to-deployed-application)
-    •	[Questions](#questions)
-    •	[Contributing](#contributing)
-    •	[Technologies Used](#technologies-used)
-    •	[License](#license)
+[Link to deployed application](#link-to-deployed-application)
+
+[Questions](#questions)
+
+[Contributors](#contributing)
+
+[Technologies Used](#technologies-used)
+
+[License](#license)
 
 ## Link to deployed application
 
