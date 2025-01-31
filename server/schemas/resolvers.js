@@ -74,13 +74,20 @@ const resolvers = {
         { _id: context.user._id },
         { 
           $addToSet: { savedBooks: bookInput },
+        },
+        { new: true, runValidators: true }
+      );
+
+      const updatedSwap = await User.findOneAndUpdate(
+        { email: bookInput.ownerEmail },
+        { 
           $pull: { swapBooks: { removeId } },
         },
         { new: true, runValidators: true }
       );
 
       console.log("Updated User: ", updatedUser);
-
+      console.log(updatedSwap);
       return updatedUser;
     },
 
